@@ -96,10 +96,11 @@ for layer1 in STACK:
                 path_out[idx] = -Density(layer1)*GetMaterialMu(GetFluorescenceEnergy(EOI,Beam_Energy),layer1)*dt/np.sin(Detector_Theta*np.pi/180)
             first_integral[N] = np.exp(np.sum(path_in+path_out))
         iio = iio*np.sum(first_integral)/steps
+        break
     else:
         t = layer1['Thick']*um_to_cm
         path_in =  -Density(layer1) * GetMaterialMu(Beam_Energy,layer1) * t/np.sin(Beam_Theta*np.pi/180)
         path_out = -Density(layer1) * GetMaterialMu(GetFluorescenceEnergy(EOI,Beam_Energy),layer1) * t/np.sin(Detector_Theta*np.pi/180)
         iio = iio*np.exp(path_in + path_out) 
             
-print iio
+print(iio)
